@@ -1,0 +1,29 @@
+USE ROLE DEVELOPER ;
+USE WAREHOUSE PROJECT ;
+USE DATABASE <% DB_NAME %>;
+
+----- CSV 
+PUT 'file://<% LOCAL_DATA_PATH %>/*.csv'
+@<% DB_NAME %>.BRONZE.RAW/
+AUTO_COMPRESS=TRUE;
+
+PUT 'file://<% LOCAL_DATA_PATH %>/Client B/*.csv'
+@<% DB_NAME %>.BRONZE.RAW/Client_B/
+AUTO_COMPRESS=TRUE;
+
+------ XML 
+PUT 'file://<% LOCAL_DATA_PATH %>/*.xml'
+@<% DB_NAME %>.BRONZE.RAW/
+AUTO_COMPRESS=TRUE;
+
+------TXT 
+PUT 'file://<% LOCAL_DATA_PATH %>/*.txt'
+@<% DB_NAME %>.BRONZE.RAW/
+AUTO_COMPRESS=TRUE;
+
+----- JSON 
+PUT 'file://<% LOCAL_DATA_PATH %>/Client B/*.json'
+@<% DB_NAME %>.BRONZE.RAW/Client_B/
+AUTO_COMPRESS=TRUE;
+
+LIST @<% DB_NAME %>.BRONZE.RAW;
